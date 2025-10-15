@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import { IShipment, ShipmentStatus } from '../types';
 import { updateShipmentStatus } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   shipmentData: IShipment;
@@ -29,6 +30,7 @@ type UpdateAction = {
 
 const ShipmentDashboard = (props: Props) => {
   const { shipmentData, setShipmentData } = props;
+  const navigate = useNavigate();
   // Function to determine the next status action based on current status
   const updateAction = (): UpdateAction => {
     const currentStatus: ShipmentStatus = shipmentData.status;
@@ -117,15 +119,33 @@ const ShipmentDashboard = (props: Props) => {
               paddingTop: '10px',
             }}
           >
-            <Button
-              variant='contained'
-              size='large'
-              onClick={async () => {
-                await onShipmentStatusUpdate(updateAction().statusToUpdate);
-              }}
-            >
-              {updateAction().actionName}
-            </Button>
+            {shipmentData.status === ShipmentStatus.delivered ? (
+              <Stack spacing={2} alignItems="center">
+                <Typography variant='h6' component='div'>
+                  Delivery Finished
+                </Typography>
+                <Button
+                  variant='contained'
+                  size='large'
+                  onClick={() => {
+                    setShipmentData({});
+                    navigate('/driver');
+                  }}
+                >
+                  Return to Dashboard
+                </Button>
+              </Stack>
+            ) : (
+              <Button
+                variant='contained'
+                size='large'
+                onClick={async () => {
+                  await onShipmentStatusUpdate(updateAction().statusToUpdate);
+                }}
+              >
+                {updateAction().actionName}
+              </Button>
+            )}
           </div>
         </div>
       ) : null}
