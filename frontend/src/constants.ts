@@ -93,6 +93,7 @@ export const mapInitialViewProps: {
   scrollWheelZoom: boolean;
 } = {
   zoom: 15,
-  center: [13.092123232608643, 80.28222309087568],
+  // center: [13.092123232608643, 80.28222309087568],
+  center: [20.697936453092055, -103.37289859688016],
   scrollWheelZoom: true,
 };

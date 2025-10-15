@@ -32,10 +32,12 @@ import './dashboard.css';
 const socket = io(API_URL);
 
 const initialState: State = {
-  pickupLocation: new LatLng(13.102971824499635, 80.27971744537354),
+  // pickupLocation: new LatLng(13.102971824499635, 80.27971744537354),
+  pickupLocation: new LatLng(20.701083, -103.375775),
   isPickupDraggable: false,
   isShowPickupMarker: false,
-  dropLocation: new LatLng(13.092123232608643, 80.28222309087568),
+  // dropLocation: new LatLng(13.092123232608643, 80.28222309087568),
+  dropLocation: new LatLng(20.694792, -103.369659),
   isDropDraggable: false,
   isShowDropMarker: false,
   driverLocation: null,
@@ -241,7 +243,7 @@ const UserDashboard = () => {
   const ButtonNewDelivery = () => {
     return (
       <Button
-        variant='contained'
+        variant="contained"
         onClick={() => {
           onNewDeliveryClick();
         }}
@@ -253,7 +255,7 @@ const UserDashboard = () => {
   const ButtonConfirmPickUp = () => {
     return (
       <Button
-        variant='contained'
+        variant="contained"
         onClick={() => {
           onPickupSelected();
         }}
@@ -265,7 +267,7 @@ const UserDashboard = () => {
   const ButtonConfirmDrop = () => {
     return (
       <Button
-        variant='contained'
+        variant="contained"
         onClick={() => {
           onDropSelected();
         }}
@@ -276,15 +278,15 @@ const UserDashboard = () => {
   };
 
   return (
-    <div className='container'>
-      <div className='col-1'>
+    <div className="container">
+      <div className="col-1">
         <UserInfo />
         {/* Shipment info */}
-        <div className='flex-center'>
+        <div className="flex-center">
           <ShipmentInfo dashboardStatus={state.dashboardStatus} />
         </div>
         {/* Action button */}
-        <div className='flex-center'>
+        <div className="flex-center">
           {state.dashboardStatus === DashboardStatus.NO_SHIPMENT && (
             <ButtonNewDelivery />
           )}
@@ -296,13 +298,13 @@ const UserDashboard = () => {
           )}
         </div>
       </div>
-      <div className='col-2'>
+      <div className="col-2">
         <MapContainer
           style={{ width: '100%', height: '99vh' }}
           {...mapInitialViewProps}
         >
           <TileLayer
-            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           {/* Pickup Marker */}
@@ -314,7 +316,7 @@ const UserDashboard = () => {
               markerIcon={pickupMarkerIcon}
               key={'pickup-marker'}
               markerName={'pickup-marker'}
-              popupMsg='Mark your pickup location'
+              popupMsg="Mark your pickup location"
             />
           ) : null}
           {/* Drop Location Marker */}
@@ -326,7 +328,7 @@ const UserDashboard = () => {
               markerIcon={dropMarkerIcon}
               key={'drop-marker'}
               markerName={'drop-marker'}
-              popupMsg='Mark your delivery location'
+              popupMsg="Mark your delivery location"
             />
           ) : null}
           {/* Driver Location Marker */}

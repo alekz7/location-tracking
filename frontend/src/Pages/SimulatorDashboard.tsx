@@ -36,7 +36,8 @@ const initialValues: {
   scrollWheelZoom: boolean;
 } = {
   zoom: 15,
-  center: [13.092123232608643, 80.28222309087568],
+  // center: [13.092123232608643, 80.28222309087568],
+  center: [20.697936453092055, -103.37289859688016],
   scrollWheelZoom: true,
 };
 const mapContainerStyle = {
@@ -177,8 +178,8 @@ const SimulatorDashboard = () => {
   };
 
   return (
-    <div className='container'>
-      <div className='col-1'>
+    <div className="container">
+      <div className="col-1">
         <div>
           <DriverDashboard socket={socket} setShipmentData={setShipmentData} />
           {shipmentData._id ? (
@@ -189,11 +190,11 @@ const SimulatorDashboard = () => {
           ) : null}
         </div>
       </div>
-      <div className='col-2'>
+      <div className="col-2">
         <div>
           <MapContainer style={mapContainerStyle} {...initialValues}>
             <TileLayer
-              url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
             <DraggableMarker />
