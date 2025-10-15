@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { DarkModeToggle } from './DarkModeToggle';
 
 export default function MainAppBar() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ export default function MainAppBar() {
           >
             Delivery Service
           </Typography>
+          <DarkModeToggle />
         </Toolbar>
       </AppBar>
       <Toolbar />
